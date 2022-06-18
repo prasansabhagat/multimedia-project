@@ -6,7 +6,7 @@ from tkinter import ttk
 
 root = tk.Tk()
 
-ttk.Label(root, text="Hello World!", padding=(30,10)).pack()  #center aligned and packed
+ttk.Label(root, text="Steganography`", padding=(30,10)).pack()  #center aligned and packed
 #ttk.Label(root, text="Hello World!").grid() ----not center aligned
 
 root.mainloop()
