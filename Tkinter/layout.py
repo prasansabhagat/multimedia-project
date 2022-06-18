@@ -32,9 +32,11 @@ def encode_text(frame):
     type_text = Label(frame, text="Enter the message you want to hide:")
     type_text.grid(row=2, column = 0)
 
-    textbox = Entry(frame)
-    textbox.pack(row=3, column=0)
+    textbox = Text(frame, height= 3, width = 10)
+    textbox.grid(row=3, column=0)
 
+    hide_button = Button(frame, text="Hide")
+    hide_button.grid(row=4, column = 0)
 
 
 def ImageInImage(frame):
@@ -51,7 +53,6 @@ def ImageInImage(frame):
     decode_image_button = Button(
         frame, text="Decode", command=lambda: decode_image(frame))
     decode_image_button.grid(row=2, column=0, pady=20)
-
 
     print("Encode!!")
 
