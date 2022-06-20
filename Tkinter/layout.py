@@ -57,8 +57,6 @@ def encode_text(frame):
     textbox = Text(frame, height= 3, width = 10)
     textbox.grid(row=3, column=0)
 
-    print(my_img)
-
     hide_button = Button(frame, text="Hide",command=lambda: encode_function(textbox ))
     hide_button.grid(row=4, column = 0)
 
