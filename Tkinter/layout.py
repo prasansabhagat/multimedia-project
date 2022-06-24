@@ -7,8 +7,8 @@ from PIL import ImageTk
 from PIL import Image
 from io import BytesIO
 import os
-#from turtle import width
 
+#function for text in image 
 def TextInImage(frame):
     frame.destroy()
     frame = LabelFrame(root, text="Image Steganography", padx=20, pady=20)
@@ -24,8 +24,8 @@ def TextInImage(frame):
 
     home_button = Button(frame, text="Home", command= lambda: home(frame) )
     home_button.grid(row = 3, column = 0, pady=20)
-    #print("Encode!!")
 
+#home function
 def home(frame):
     frame.destroy()
     frame = LabelFrame(root, text="Image Steganography", padx=30)
@@ -40,7 +40,7 @@ def home(frame):
     quit_button = ttk.Button(frame, text="Quit", command=root.destroy)
     quit_button.pack(pady="10")
 
-
+#function to encode text
 def encode_text(frame):
     frame.destroy()
     frame = LabelFrame(root, text="Text in Image", padx=20, pady = 10)
@@ -48,7 +48,7 @@ def encode_text(frame):
     select_image = Label(frame, text="Select the Image in which you want to hide text:")
     select_image.grid(row=0)
 
-    select_button = Button(frame, text = "Select", command=lambda:open_file(frame))
+    select_button = Button(frame, text = "Select", command=lambda:open_encode_file(frame))
     select_button.grid(row=1, column=0, pady=10)
 
     type_text = Label(frame, text="Enter the message you want to hide:")
@@ -57,7 +57,7 @@ def encode_text(frame):
     textbox = Text(frame, height= 3, width = 10)
     textbox.grid(row=3, column=0)
 
-    hide_button = Button(frame, text="Hide",command=lambda: encode_function(textbox ))
+    hide_button = Button(frame, text="Hide",command=lambda: encode_function(textbox ,my_img))
     hide_button.grid(row=4, column = 0)
 
     home_button = Button(frame, text="Home", command=lambda: home(frame))
@@ -65,15 +65,20 @@ def encode_text(frame):
 
 #function to enter hidden text
 def encode_function(textbox, my_img):
-    print("ji")
+    data = textbox.get("1.0", "end-1c")
+    if (len(data) == 0):
+        tk.messagebox.showinfo("Alert", "Kindly enter text in TextBox")
+    else:
+        print("Bye")
 
-#function to open file
-def open_file(frame):
+#function to open file for encoding
+def open_encode_file(frame):
     e_pg = Frame(root)
     my_file = fd.askopenfilename(filetypes=([('png', '.png'), ('jpeg', '.jpeg'), ('jpg', '.jpg'), ('All Files', '.*')]))
     if not my_file:
         tk.messagebox.showerror("Error", "You have selected nothing !")
     else:
+        global my_img
         my_img = Image.open(my_file)
         new_image = my_img.resize((300, 200))
         img = ImageTk.PhotoImage(new_image)
@@ -85,6 +90,26 @@ def open_file(frame):
         board.grid(row=6, column = 0)
         print("image loaded")
 
+#function to open decode file
+def open_decode_file(frame):
+    d_F3 = Frame(root)
+    my_file = fd.askopenfilename(filetypes=(
+        [('png', '.png'), ('jpeg', '.jpeg'), ('jpg', '.jpg'), ('All Files', '.*')]))
+    if not my_file:
+        tk.messagebox.showerror("Error", "You have selected nothing !")
+    else:
+        global my_img_decode
+        my_img_decode = Image.open(my_file, 'r')
+        my_image = my_img_decode.resize((300, 200))
+        img = ImageTk.PhotoImage(my_image)
+        label4 = Label(frame, text='Selected Image :')
+        label4.config(font=('Helvetica', 14, 'bold'))
+        label4.grid(row=5, column=0)
+        board = Label(frame, image=img)
+        board.image = img
+        board.grid(row=6, column=0)
+
+#function for decode text
 def decode_text(frame):
     frame.destroy()
     frame = LabelFrame(root, text="Text in Image", padx=20, pady=10)
@@ -93,12 +118,13 @@ def decode_text(frame):
     select_encoded_image = Label(frame, text="Select the image with hidden text:")
     select_encoded_image.grid(row = 1, column = 0, pady = 10)
 
-    select_button = Button(frame, text="Select", command = lambda:open_file(frame))
+    select_button = Button(frame, text="Select", command = lambda:open_decode_file(frame))
     select_button.grid(row=2, column=0, pady=10)
 
     home_button = Button(frame, text="Home", command=lambda: home(frame))
     home_button.grid(row=3, column=0, pady=20)
 
+#function for image in image
 def ImageInImage(frame):
     frame.destroy()
     frame = LabelFrame(root, text="Image Steganography", padx=20, pady=20)
