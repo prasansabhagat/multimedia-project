@@ -12,4 +12,5 @@ greet_button.pack(side="left", fill="y", expand=True)
 quit_button = ttk.Button(root, text = "Quit", command=root.destroy)
 quit_button.pack()
 
+
 root.mainloop()
