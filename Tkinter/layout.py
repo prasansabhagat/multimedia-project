@@ -189,6 +189,7 @@ def decode(image):
         if pixels[-1] % 2 != 0:
             return data
 
+
 #function to open decode file
 def open_decode_file(frame):
     d_F3 = Frame(root)
