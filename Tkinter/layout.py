@@ -135,7 +135,7 @@ def encode_data_pixels(new_img, data):
 #function to enter hidden text
 def encode_function(textbox, my_img):
     global data
-    data = textbox.get("1.0", "end-1c")
+    data = textbox.get("1.0", "end-1c")                                  #data to be encrypted
     if (len(data) == 0):
         tk.messagebox.showinfo("Alert", "Kindly enter text in TextBox")
     else:
@@ -209,7 +209,7 @@ def open_decode_file(frame):
         board = Label(frame, image=img)
         board.image = img
         board.grid()
-        hidden_data = decode(my_img_decode)
+        hidden_data = decode(my_img_decode)                #to be decrypted (hidden data)
         label2 = Label(frame, text='Hidden data is :')
         label2.config(font=('Helvetica',14,'bold'))
         label2.grid(pady=10, row=7, column=0)
@@ -261,22 +261,23 @@ def ImageInImage(frame):
 
     print("Encode!!")
 
-#root properties
-root = tk.Tk()
-root.geometry("400x400")
-root.title("Steganography")
+if __name__=="__main__":
+    #root properties
+    root = tk.Tk()
+    root.geometry("400x400")
+    root.title("Steganography")
 
-#frame properties
-frame = LabelFrame(root, text="Image Steganography", padx=30)
-frame.pack(padx="30", pady=50)
+    #frame properties
+    frame = LabelFrame(root, text="Image Steganography", padx=30)
+    frame.pack(padx="30", pady=50)
 
-option1_button = ttk.Button(frame, text="Text in Image", command=lambda:TextInImage(frame))
-option1_button.pack( fill="x",padx="30", pady="10")
+    option1_button = ttk.Button(frame, text="Text in Image", command=lambda:TextInImage(frame))
+    option1_button.pack( fill="x",padx="30", pady="10")
 
-option2_button = ttk.Button(frame, text="Image in Image", command=lambda:ImageInImage(frame))
-option2_button.pack( fill="x",padx="30", pady="10")
+    option2_button = ttk.Button(frame, text="Image in Image", command=lambda:ImageInImage(frame))
+    option2_button.pack( fill="x",padx="30", pady="10")
 
-quit_button = ttk.Button(frame, text="Quit", command=root.destroy)
-quit_button.pack(pady="10")
+    quit_button = ttk.Button(frame, text="Quit", command=root.destroy)
+    quit_button.pack(pady="10")
 
-root.mainloop()
+    root.mainloop()
