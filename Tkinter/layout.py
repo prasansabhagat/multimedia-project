@@ -7,6 +7,11 @@ from PIL import ImageTk
 from PIL import Image
 from io import BytesIO
 import os
+from crypt import *
+
+# from Tkinter.crypt import AESCipher
+
+# from rsa import decrypt, encrypt
 
 #function for text in image 
 def TextInImage(frame):
@@ -135,11 +140,15 @@ def encode_data_pixels(new_img, data):
 #function to enter hidden text
 def encode_function(textbox, my_img):
     global data
+    key="aasdfswafwesf"
     data = textbox.get("1.0", "end-1c")                                  #data to be encrypted
+    global obj
+    obj=AESCipher(key)
+    data=obj.encrypt(data)
     if (len(data) == 0):
         tk.messagebox.showinfo("Alert", "Kindly enter text in TextBox")
     else:
-    
+
         new_img = my_img.copy()
         encode_data_pixels(new_img, data)
         my_file = BytesIO()
@@ -210,6 +219,7 @@ def open_decode_file(frame):
         board.image = img
         board.grid()
         hidden_data = decode(my_img_decode)                #to be decrypted (hidden data)
+        hidden_data=obj.decrypt(hidden_data)
         label2 = Label(frame, text='Hidden data is :')
         label2.config(font=('Helvetica',14,'bold'))
         label2.grid(pady=10, row=7, column=0)
