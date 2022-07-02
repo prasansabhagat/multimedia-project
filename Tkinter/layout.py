@@ -143,10 +143,12 @@ def encode_function(textbox, my_img):
         new_img = my_img.copy()
         encode_data_pixels(new_img, data)
         my_file = BytesIO()
+        print("to access the file path")
         temp=os.path.splitext(os.path.basename(my_img.filename))[0]
         new_img.save(tk.filedialog.asksaveasfilename(initialfile=temp,filetypes = ([('png', '*.png')]),defaultextension=".png"))
         d_image_size = my_file.tell()
         d_image_w,sd_image_h = new_img.size
+        
         tk.messagebox.showinfo("Success","Encoding Successful\nFile is saved as Image_with_hiddentext.png in the same directory")
 
 
