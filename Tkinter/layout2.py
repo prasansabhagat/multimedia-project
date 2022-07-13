@@ -308,7 +308,9 @@ def open_decode_file1(frame):
         board = Label(frame, image=img)
         board.image = img
         board.grid()
-        
+
+        root.geometry("500x700")
+
         img_=Image.open(my_file)
         temp=os.path.splitext(os.path.basename(img_.filename))[0]
         op_path=tk.filedialog.asksaveasfilename(initialfile=temp,filetypes = ([('png', '*.png')]),defaultextension=".png")
@@ -345,6 +347,7 @@ def encode_img_func(img1,img2):
     temp=os.path.splitext(os.path.basename(img_.filename))[0]
     op_path=tk.filedialog.asksaveasfilename(initialfile=temp,filetypes = ([('png', '*.png')]),defaultextension=".png")
     os.system(f'python trial.py merge --image1={my_file1} --image2={my_file2} --output={op_path}')
+    tk.messagebox.showinfo("Success","Encoding Successful")
 
 def encode_image(frame):
     frame.destroy()
